@@ -1,0 +1,342 @@
+<!--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>-->
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>获取用户信息</title>
+	<style type="text/css">
+        a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline
+        }
+
+        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+            display: block
+        }
+
+        body {
+            line-height: 1;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        blockquote, q {
+            quotes: none
+        }
+
+        blockquote:after, blockquote:before, q:after, q:before {
+            content: "";
+            content: none
+        }
+
+        html {
+            color: #3f3f3f
+        }
+
+        :focus {
+            outline: 0
+        }
+
+        blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            margin: auto;
+            max-width: 45pc;
+            font-size: 16px;
+            font-family: PingFang SC, Arial, Microsoft YaHei
+        }
+
+        body, html {
+            background-color: #eaeff3;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        a:-webkit-any-link {
+            color: #303030;
+            text-decoration: none
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-weight: 400;
+            font-style: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        li {
+            display: block
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 400;
+            font-size: 100%
+        }
+
+        q:after, q:before {
+            content: ""
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, select, textarea {
+            border: none;
+            border-radius: 0;
+            font-weight: inherit;
+            font-size: inherit;
+            font-family: inherit;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-appearance: none
+        }
+
+        button {
+            border: none;
+            background: 0 0
+        }
+
+        .border-b {
+            position: relative
+        }
+
+        .border-b:after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 0;
+            border-top: 1px solid #d6d6d6;
+            left: 0;
+            bottom: 0
+        }
+
+        *, :after, :before {
+            box-sizing: border-box
+        }
+
+        .mgb10 {
+            margin-bottom: 10px
+        }
+
+        .pd10 {
+            padding: 0 10px
+        }
+
+        .flex {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex
+        }
+
+        .flex-full {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1
+        }
+
+        .yun-button {
+            outline: none;
+            border: none;
+            text-shadow: none;
+            background: transparent;
+            overflow: hidden;
+            width: 100%;
+            height: 44px;
+            line-height: 44px;
+            border-radius: 22px;
+            padding: 0;
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+            background-color: #3cbaff
+        }
+
+        .yun-button-normal {
+            background-color: #3cbaff
+        }
+
+        .yun-button-large {
+            width: 100%;
+            height: 44px;
+            line-height: 44px;
+            border-radius: 22px;
+            padding: 0;
+            font-size: 16px
+        }
+
+        .yun-button.is-disabled {
+            color: #98a1a8;
+            background: #dce1e7
+        }
+
+        .yun-button:not(.is-disable):active {
+            opacity: .5
+        }
+
+        .yun-toast-icon img {
+            width: 100%;
+            height: auto
+        }
+
+        .userlogo {
+            display: block;
+            width: 70px;
+            height: 70px;
+            margin: 30px auto 10px;
+            border-radius: 50%;
+            background: #3cbaff
+        }
+
+        .username {
+            font-size: 18px;
+            margin-bottom: 20px
+        }
+
+        .userinfor {
+            border: 1px solid #d6d6d6;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            background: #fff;
+            font-size: 16px
+        }
+
+        .userinfor li {
+            height: 40px;
+            padding: 0 20px;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+
+        .userinfor .userinfor-item {
+            color: #333
+        }
+
+        .userinfor .userinfor-value {
+            text-align: right;
+            color: #999
+        }
+
+    </style>
+</head>
+<script src="lib/axios.min.js"></script>
+<script src="lib/vue.min.js"></script>
+<script src="lib/util.js"></script>
+<body>
+    <div class="pd10" id="app">    
+	    <img v-bind:src="info.photoUrl" alt="" class="userlogo">
+        <p class="username">{{info.userName}}</p>
+        <ul class="userinfor">
+          <li class="flex border-b">
+            <div class="userinfor-item">用户所在部门:</div>
+            <div class="flex-full userinfor-value">{{info.deptName?info.deptName:'无部门'}}</div>
+          </li>
+          <li class="flex border-b">
+            <div class="userinfor-item">openId:</div>
+            <div class="flex-full userinfor-value">{{info.openId}}</div>
+          </li>
+          <li class="flex border-b">
+            <div class="userinfor-item">userId:</div>
+            <div class="flex-full userinfor-value">{{info.userId}}</div>
+          </li>        
+          <li class="flex border-b">
+            <div class="userinfor-item">eid:</div>
+            <div class="flex-full userinfor-value">{{info.eid}}</div>
+          </li>
+           <li class="flex">
+            <div class="userinfor-item">appId:</div>
+            <div class="flex-full userinfor-value">{{info.appId}}</div>
+          </li>
+        </ul>
+        <div class="pd10">
+        <div class="pd10">
+            <button class="mgb10 yun-button yun-button-normal yun-button-large" id="btn" v-on:click="viewclick()">查看应用开发业务场景</button>  
+            <a href="lightapp.html" class=""><button class="mgb10 yun-button yun-button-normal yun-button-large">查看API示例</button></a>
+        </div> 
+        </div>       
+    </div>
+<script type="text/javascript">
+     var app = new Vue({
+         el: '#app',
+         data: {
+            info:{
+                photoUrl: "",
+                userName: "名称",
+                deptName: "无部门",
+                openId: "",
+                userId: "",
+                appId: "",
+                eid: ""
+            },
+            appId: util.getQuery().client_id || util.getLocalData('demoappId'),//创建轻应用的appId值
+            ticket: util.getQuery().ticket || util.getLocalData('demoticket')
+         },
+         created: function(){
+            this.getdata()
+            util.setLocalData('demoappId',this.appId);
+            util.setLocalData('demoticket',this.ticket);
+         },
+         methods: {
+            getdata: function(){
+                 var _self = this;
+                 var params = new URLSearchParams();//注意兼容性
+                    params.append('reqName', 'getuserinfo');//获取用户信息
+                    params.append('appId', _self.appId);
+                    params.append('ticket', _self.ticket);
+                 this.$axios.post('', params
+                   ).then(function(res){
+                        if(res.data.success){                            
+                            _self.info = res.data.data;
+                            util.setLocalData('demouserName',_self.info.userName);
+                            util.setLocalData('demodeptName',_self.info.deptName?_self.info.deptName:'无部门');
+                            util.setLocalData('demophotoUrl',_self.info.photoUrl)
+                        } else{                            
+                            _self.$toast({
+                                content:res.data.error
+                            })
+                        } 
+                  }) 
+            },
+            viewclick:function(){
+                window.location.href = 'approval.html'
+            }
+         }
+     })
+</script>
+</body>
+</html>
